@@ -12,7 +12,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
+    <div>
       <PostList posts={posts} loadingAction={loadingAction} />
     </div>
   );

@@ -18,7 +18,7 @@ const Layout = () => {
           </div>
         </header>
       </nav>
-      <main>
+      <main className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
         <Outlet />
       </main>
       <ToastContainer />

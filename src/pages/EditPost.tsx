@@ -17,7 +17,7 @@ export default function EditPost() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
+    <div>
       <PostForm onSubmit={handleSubmission} editingPost={editingPost} />
     </div>
   );

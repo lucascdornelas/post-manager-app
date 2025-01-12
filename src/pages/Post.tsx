@@ -21,7 +21,7 @@ export default function PostPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
+    <div>
       <h1>{post?.title}</h1>
       <p>{post?.body}</p>
       <div>
