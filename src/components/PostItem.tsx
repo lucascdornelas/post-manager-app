@@ -1,11 +1,8 @@
 import { Link } from "react-router-dom";
+import { Post } from "../types";
 
 type PostItemProps = {
-  post: {
-    id: string;
-    title: string;
-    body: string;
-  };
+  post: Post;
 };
 
 const PostItem = (props: PostItemProps) => {
@@ -16,7 +13,7 @@ const PostItem = (props: PostItemProps) => {
       <h2 className="text-xl font-bold text-gray-800">
         <Link to={`/posts/${post.id}`}>{post.title}</Link>
       </h2>
-      <p className="text-gray-600">{post.body}</p>
+      <p className="text-gray-600">{post.summary}</p>
     </div>
   );
 };

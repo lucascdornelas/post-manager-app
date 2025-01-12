@@ -8,7 +8,7 @@ const Layout = () => {
       <nav className="border-b">
         <header className="max-w-7xl mx-auto flex flex-wrap justify-between items-center py-4 px-4 sm:px-6 lg:px-8">
           <Link to="/">
-            <h1 className="text-xl font-bold text-center text-blue-600 sm:text-3xl">
+            <h1 className="text-xl font-bold text-center text-localiza-green sm:text-3xl">
               Gerenciador de Posts
             </h1>
           </Link>

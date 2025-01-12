@@ -35,14 +35,14 @@ export const usePostStore = create<PostState>((set, get) => ({
   },
 
   createPost: async (data) => {
-    if (!data.title || !data.body) {
-      toast.error("Título e conteúdo são obrigatórios.");
+    if (!data.title || !data.summary || !data.body){
+      toast.error("Título, resumo e conteúdo são obrigatórios.");
       return;
     }
 
     try {
       set({ loadingAction: "create" });
-      const response = await createPost({ title: data.title, body: data.body });
+      const response = await createPost({ title: data.title, summary: data.summary, body: data.body });
       if (response.status === 201) {
         set((state) => ({ posts: [...state.posts, response.data] }));
         toast.success("Post criado com sucesso!");
