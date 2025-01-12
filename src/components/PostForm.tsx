@@ -1,6 +1,15 @@
 import { useState, useEffect } from 'react';
+import { Post } from '../types';
 
-const PostForm = ({ onSubmit, editingPost, setEditingPost }) => {
+type PostFormProps = {
+  onSubmit: (data: Partial<Post>) => void;
+  editingPost: Post | null;
+  setEditingPost: (post: Post | null) => void;
+};
+
+const PostForm = (props: PostFormProps) => {
+  const { onSubmit, editingPost, setEditingPost } = props;
+  
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
@@ -14,10 +23,10 @@ const PostForm = ({ onSubmit, editingPost, setEditingPost }) => {
     }
   }, [editingPost]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (editingPost) {
-      onSubmit(editingPost.id, { title, body });
+      onSubmit({ id: editingPost.id, title, body });
     } else {
       onSubmit({ title, body });
     }
