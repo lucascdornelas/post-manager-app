@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Post } from "../types";
 import { usePostStore } from "../store/postStore";
+import Button from "./ui/Button";
+import Input from "./ui/Input";
+import Textarea from "./ui/TextArea";
 
 type PostFormProps = {
   onSubmit: (data: Partial<Post>) => void;
@@ -29,27 +32,25 @@ const PostForm = (props: PostFormProps) => {
     <form onSubmit={handleSubmit} className="mb-6">
       <div className="mb-4">
         <label className="block text-gray-700 font-bold mb-2">Título</label>
-        <input
+        <Input
           type="text"
           placeholder="Título"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 font-bold mb-2">Conteúdo</label>
-        <textarea
+        <Textarea
           placeholder="Conteúdo"
           value={body}
           onChange={(e) => setBody(e.target.value)}
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
-      <div className="flex items-center space-x-4">
-        <button
+      <div className="flex items-center space-x-4 justify-end">
+        <Button
           type="submit"
-          className={`bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600
+          className={`
             ${
               loadingAction === "create" || loadingAction === "update"
                 ? "cursor-not-allowed opacity-50"
@@ -59,7 +60,7 @@ const PostForm = (props: PostFormProps) => {
           disabled={loadingAction === "create" || loadingAction === "update"}
         >
           {editingPost ? "Atualizar" : "Criar"}
-        </button>
+        </Button>
       </div>
     </form>
   );

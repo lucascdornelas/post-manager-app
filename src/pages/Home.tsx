@@ -7,10 +7,6 @@ export default function Home() {
   const fetchPosts = usePostStore((state) => state.fetchPosts);
   const loadingAction = usePostStore((state) => state.loadingAction);
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
   return (
     <div>
       <PostList posts={posts} loadingAction={loadingAction} />
