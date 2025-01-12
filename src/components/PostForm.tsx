@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Post } from "../types";
+import { usePostStore } from "../store/postStore";
 
 type PostFormProps = {
   onSubmit: (data: Partial<Post>) => void;
@@ -11,6 +12,8 @@ const PostForm = (props: PostFormProps) => {
 
   const [title, setTitle] = useState(editingPost?.title || "");
   const [body, setBody] = useState(editingPost?.body || "");
+
+  const loadingAction = usePostStore((state) => state.loadingAction);
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -46,7 +49,14 @@ const PostForm = (props: PostFormProps) => {
       <div className="flex items-center space-x-4">
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+          className={`bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600
+            ${
+              loadingAction === "create" || loadingAction === "update"
+                ? "cursor-not-allowed opacity-50"
+                : ""
+            }
+            `}
+          disabled={loadingAction === "create" || loadingAction === "update"}
         >
           {editingPost ? "Atualizar" : "Criar"}
         </button>
