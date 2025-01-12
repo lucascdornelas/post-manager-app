@@ -1,30 +1,20 @@
-import { useState, useEffect } from 'react';
-import { Post } from '../types';
+import { useState } from "react";
+import { Post } from "../types";
 
 type PostFormProps = {
   onSubmit: (data: Partial<Post>) => void;
-  editingPost: Post | null;
-  setEditingPost: (post: Post | null) => void;
+  editingPost?: Post;
 };
 
 const PostForm = (props: PostFormProps) => {
-  const { onSubmit, editingPost, setEditingPost } = props;
-  
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const { onSubmit, editingPost } = props;
 
-  useEffect(() => {
-    if (editingPost) {
-      setTitle(editingPost.title);
-      setBody(editingPost.body);
-    } else {
-      setTitle('');
-      setBody('');
-    }
-  }, [editingPost]);
+  const [title, setTitle] = useState(editingPost?.title || "");
+  const [body, setBody] = useState(editingPost?.body || "");
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+
     if (editingPost) {
       onSubmit({ id: editingPost.id, title, body });
     } else {
@@ -58,17 +48,8 @@ const PostForm = (props: PostFormProps) => {
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
         >
-          {editingPost ? 'Atualizar' : 'Criar'}
+          {editingPost ? "Atualizar" : "Criar"}
         </button>
-        {editingPost && (
-          <button
-            type="button"
-            onClick={() => setEditingPost(null)}
-            className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
-          >
-            Cancelar
-          </button>
-        )}
       </div>
     </form>
   );

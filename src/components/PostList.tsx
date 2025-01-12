@@ -3,13 +3,11 @@ import PostItem from './PostItem';
 
 type PostListProps = {
   posts: Post[];
-  onEdit: (post: Post) => void;
-  onDelete: (id: string) => void;
   loadingAction: "fetch" | "create" | "update" | "delete" | null;
 };
 
 const PostList = (props: PostListProps) => {
-  const { posts, onEdit, onDelete, loadingAction } = props;
+  const { posts, loadingAction } = props;
 
   if (loadingAction === "fetch") {
     return <p>Carregando...</p>;
@@ -30,7 +28,7 @@ const PostList = (props: PostListProps) => {
   return (
     <div className="space-y-4">
       {posts.map((post) => (
-        <PostItem key={post.id} post={post} onEdit={onEdit} onDelete={onDelete} />
+        <PostItem key={post.id} post={post} />
       ))}
     </div>
   );
