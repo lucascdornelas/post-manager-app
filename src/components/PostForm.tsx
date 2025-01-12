@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Post } from "../types";
 import { usePostStore } from "../store/postStore";
 import Button from "./ui/Button";
@@ -10,42 +11,51 @@ type PostFormProps = {
   editingPost?: Post;
 };
 
+type PostForm = {
+  title: string;
+  body: string;
+};
+
 const PostForm = (props: PostFormProps) => {
   const { onSubmit, editingPost } = props;
-
-  const [title, setTitle] = useState(editingPost?.title || "");
-  const [body, setBody] = useState(editingPost?.body || "");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<PostForm>(editingPost ? { defaultValues: editingPost } : {});
 
   const loadingAction = usePostStore((state) => state.loadingAction);
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-
+  const handleSubmitForm = (data: PostForm) => {
     if (editingPost) {
-      onSubmit({ id: editingPost.id, title, body });
+      onSubmit({ id: editingPost.id, title: data.title, body: data.body });
     } else {
-      onSubmit({ title, body });
+      onSubmit({ title: data.title, body: data.body });
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-6">
+    <form onSubmit={handleSubmit(handleSubmitForm)} className="mb-6">
       <div className="mb-4">
         <label className="block text-gray-700 font-bold mb-2">Título</label>
         <Input
           type="text"
           placeholder="Título"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          {...register("title", { required: true })}
         />
+        {errors.title && (
+          <p className="text-red-500 text-xs mt-1">Campo obrigatório</p>
+        )}
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 font-bold mb-2">Conteúdo</label>
         <Textarea
           placeholder="Conteúdo"
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
+          {...register("body", { required: true })}
         />
+        {errors.body && (
+          <p className="text-red-500 text-xs mt-1">Campo obrigatório</p>
+        )}
       </div>
       <div className="flex items-center space-x-4 justify-end">
         <Button

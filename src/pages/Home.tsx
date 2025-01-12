@@ -4,7 +4,6 @@ import { usePostStore } from "../store/postStore";
 
 export default function Home() {
   const posts = usePostStore((state) => state.posts);
-  const fetchPosts = usePostStore((state) => state.fetchPosts);
   const loadingAction = usePostStore((state) => state.loadingAction);
 
   return (
