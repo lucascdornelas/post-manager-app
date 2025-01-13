@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import PostList from "../components/PostList";
 import { usePostStore } from "../store/postStore";
 import { useQuery } from "@tanstack/react-query";
