@@ -1,12 +1,8 @@
-import { Post } from '../types';
+import { usePostStore } from '../store/postStore';
 import PostItem from './PostItem';
 
-type PostListProps = {
-  posts: Post[];
-};
-
-const PostList = (props: PostListProps) => {
-  const { posts } = props;
+const PostList = () => {
+  const posts = usePostStore((state) => state.posts);
 
   if (!posts || !posts.length) {
     return <p>Nenhum post encontrado.</p>;

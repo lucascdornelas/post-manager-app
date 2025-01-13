@@ -17,7 +17,6 @@ export default function Home() {
     }
   }, [isSuccess, data, setPosts]);
 
-  const posts = usePostStore((state) => state.posts);
 
   if (isLoading) {
     return <p>Carregando posts...</p>;
@@ -25,7 +24,7 @@ export default function Home() {
 
   return (
     <div>
-      <PostList posts={posts} />
+      <PostList/>
     </div>
   );
 }
