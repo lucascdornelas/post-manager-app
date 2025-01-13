@@ -65,6 +65,7 @@ describe("PostForm Component", () => {
 
     expect(screen.getByDisplayValue("Post Existente")).toBeInTheDocument();
     expect(screen.getByDisplayValue("Resumo existente")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("Conteúdo existente")).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: /Atualizar/i })
     ).toBeInTheDocument();
