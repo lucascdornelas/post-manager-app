@@ -5,16 +5,8 @@ import NotFound from "./pages/NotFound";
 import NewPost from "./pages/NewPost";
 import PostPage from "./pages/Post";
 import EditPost from "./pages/EditPost";
-import { useEffect } from "react";
-import { usePostStore } from "./store/postStore";
 
 export function App() {
-  const fetchPosts = usePostStore((state) => state.fetchPosts);
-
-  useEffect(() => {
-    fetchPosts();
-  }, [fetchPosts]);
-
   return (
     <BrowserRouter>
       <Routes>

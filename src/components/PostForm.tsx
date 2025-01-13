@@ -1,14 +1,14 @@
 import { Controller, useForm } from "react-hook-form";
 import { Post } from "../types";
-import { usePostStore } from "../store/postStore";
 import Button from "./ui/Button";
 import Input from "./ui/Input";
-import Textarea from "./ui/TextArea";
+import Textarea from "./ui/Textarea";
 import MarkdownEditor from "./MarkdownEditor";
 
 type PostFormProps = {
   onSubmit: (data: Partial<Post>) => void;
   editingPost?: Post;
+  isPending?: boolean;
 };
 
 type PostForm = {
@@ -17,7 +17,9 @@ type PostForm = {
   body: string;
 };
 
-const PostForm = ({ onSubmit, editingPost }: PostFormProps) => {
+const PostForm = (props: PostFormProps) => {
+  const { onSubmit, editingPost, isPending } = props;
+
   const {
     register,
     control,
@@ -25,15 +27,14 @@ const PostForm = ({ onSubmit, editingPost }: PostFormProps) => {
     formState: { errors },
     reset,
   } = useForm<PostForm>({
-    defaultValues: editingPost ? {
-      title: editingPost.title,
-      summary: editingPost.summary,
-      body: editingPost.body,
-    } : {},
+    defaultValues: editingPost
+      ? {
+          title: editingPost.title,
+          summary: editingPost.summary,
+          body: editingPost.body,
+        }
+      : {},
   });
-
-  const loadingAction = usePostStore((state) => state.loadingAction);
-  const isLoading = loadingAction === "create" || loadingAction === "update";
 
   const handleSubmitForm = (data: PostForm) => {
     if (editingPost) {
@@ -116,18 +117,14 @@ const PostForm = ({ onSubmit, editingPost }: PostFormProps) => {
       <div className="flex items-center space-x-4 justify-end">
         <Button
           type="submit"
-          disabled={isLoading}
+          disabled={isPending}
           className={`flex items-center ${
-            isLoading ? "cursor-not-allowed opacity-50" : ""
+            isPending ? "cursor-not-allowed opacity-50" : ""
           }`}
+          loading={isPending}
+          size="lg"
         >
-          {isLoading ? (
-            <>
-              <span className="loader mr-2"></span> {editingPost ? "Atualizando..." : "Criando..."}
-            </>
-          ) : (
-            editingPost ? "Atualizar" : "Criar"
-          )}
+          {editingPost ? "Atualizar" : "Criar"}
         </Button>
       </div>
     </form>

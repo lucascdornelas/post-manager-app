@@ -3,27 +3,10 @@ import PostItem from './PostItem';
 
 type PostListProps = {
   posts: Post[];
-  loadingAction: "fetch" | "create" | "update" | "delete" | null;
 };
 
 const PostList = (props: PostListProps) => {
-  const { posts, loadingAction } = props;
-
-  if (loadingAction === "fetch") {
-    return <p>Carregando...</p>;
-  }
-
-  if (loadingAction === "delete") {
-    return <p>Deletando...</p>;
-  }
-
-  if (loadingAction === "update") {
-    return <p>Atualizando...</p>;
-  }
-
-  if (loadingAction === "create") {
-    return <p>Criando...</p>;
-  }
+  const { posts } = props;
 
   return (
     <div className="space-y-4">

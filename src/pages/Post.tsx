@@ -3,25 +3,62 @@ import { usePostStore } from "../store/postStore";
 import Button from "../components/ui/Button";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getPost, deletePost } from "../services/api";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function PostPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const setPost = usePostStore((state) => state.setPost);
+  const deletePostStore = usePostStore((state) => state.deletePost);
   const posts = usePostStore((state) => state.posts);
-  const deletePost = usePostStore((state) => state.deletePost);
 
+  const { data, isSuccess, isLoading } = useQuery({
+    queryKey: ["posts", id],
+    queryFn: () => getPost(id),
+  });
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      setPost(data);
+    }
+  }, [isSuccess, data, setPost]);
+
+  useEffect(() => {
+    if (!id) {
+      navigate("/");
+    }
+  }, [id, navigate]);
+
+  if (!id) return null;
+
+  const mutation = useMutation({
+    mutationKey: ["posts"],
+    mutationFn: () => deletePost(id),
+    onSuccess: () => {
+      deletePostStore(id);
+      toast.success("Post excluído com sucesso!");
+      navigate(`/`);
+    },
+    onError: (error: Error) => {
+      console.error(error);
+      toast.error("Erro ao excluir post.");
+    },
+  });
   const post = posts.find((post) => post.id === id);
 
   const handleDelete = () => {
-    if (!id) return;
-
     if (!window.confirm("Tem certeza que deseja excluir este post?")) return;
 
-    deletePost(id);
-
-    navigate("/");
+    mutation.mutate();
   };
+
+  if (isLoading) {
+    return <p>Carregando...</p>;
+  }
 
   return (
     <div>
@@ -30,7 +67,7 @@ export default function PostPage() {
         {post?.body}
       </ReactMarkdown>
       <div className="flex gap-4 mt-4 w-full justify-end">
-        <Button variant="destructive" onClick={handleDelete}>
+        <Button variant="destructive" onClick={handleDelete} loading={mutation.isPending}>
           Excluir
         </Button>
         <Link to={`/posts/${post?.id}/edit`}>

@@ -8,7 +8,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     | "success"
     | "warning"
     | "neutral";
-  size?: "default" | "sm" | "xsm" | "icon";
+  size?: "default" | "sm" | "xsm" | "icon" | "lg";
+  loading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -17,6 +18,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       variant = "primary",
       size = "default",
       className = "",
+      loading = false,
       ...rest
     } = props;
 
@@ -49,7 +51,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       sm: "px-3 py-1 ",
       xsm: "px-2 py-1 text-xs ",
       icon: " ",
+      lg: "px-6 py-3 ",
     };
+
+    const spinner = (
+      <div className="w-5 h-5 rounded-full border-2 border-t-transparent border-white animate-spin"></div>
+    );
 
     return (
       <button
@@ -63,7 +70,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...rest}
       >
-        {props.children}
+        {loading && spinner}
+        {!loading && props.children}
       </button>
     );
   }
