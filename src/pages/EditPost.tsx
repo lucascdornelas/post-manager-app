@@ -33,7 +33,7 @@ export default function EditPost() {
   });
 
   useEffect(() => {
-    if (isSuccess && data) {
+    if (isSuccess && data && !posts.find((post) => post.id === id)) {
       setPost(data);
     }
   }, [isSuccess, data, setPost]);
