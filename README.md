@@ -32,27 +32,27 @@ src/
 
 ## Tarefas
 
-- [ ] **Consumir API**: Implementar a lógica para consumir a API JSONPlaceholder e disponibilizar as seguintes funcionalidades:
-  - [ ] Listar posts
-  - [ ] Criar post
-  - [ ] Editar post
-  - [ ] Excluir post
-- [ ] **Validações**: Adicionar validações ao formulário de criação/edição de posts
-- [ ] **Feedback visual**: Adicionar feedback visual ao usuário
-  - [ ] Loading spinner
-  - [ ] Mensagens de erro/sucesso
-- [ ] **Responsividade**: Tornar a aplicação responsiva
-- [ ] **Testes unitários**: Escrever testes unitários para os componentes principais
+- [x] **Consumir API**: Implementar a lógica para consumir a API JSONPlaceholder e disponibilizar as seguintes funcionalidades:
+  - [x] Listar posts
+  - [x] Criar post
+  - [x] Editar post
+  - [x] Excluir post
+- [x] **Validações**: Adicionar validações ao formulário de criação/edição de posts
+- [x] **Feedback visual**: Adicionar feedback visual ao usuário
+  - [x] Loading spinner
+  - [x] Mensagens de erro/sucesso
+- [x] **Responsividade**: Tornar a aplicação responsiva
+- [x] **Testes unitários**: Escrever testes unitários para os componentes principais
 
 ## Ideias Extras
 
-- [ ] **Gerenciamento de Requisições**: Utilizar React Query para gerenciar as requisições à API
-- [ ] **Paginação**: Adicionar funcionalidade de paginação
+- [x] **Gerenciamento de Requisições**: Utilizar React Query para gerenciar as requisições à API
+- [x] **Paginação**: Adicionar funcionalidade de paginação
 - [ ] **Pesquisa**: Adicionar funcionalidade de pesquisa por título
 - [ ] **Filtros de visualização**: Implementar filtros para a visualização de posts
   - [ ] Filtrar posts por usuário
   - [ ] Filtrar posts por título/conteúdo
 - [ ] **TypeScript**: Utilizar TypeScript para adicionar tipagem ao código
-- [ ] **Dark Mode**: Adicionar um tema escuro para a aplicação
-- [ ] **Animações**: Implementar animações para melhorar a experiência do usuário
+- [x] **Dark Mode**: Adicionar um tema escuro para a aplicação
+- [x] **Animações**: Implementar animações para melhorar a experiência do usuário
 - [ ] **Internacionalização**: Adicionar suporte a múltiplos idiomas na aplicação
