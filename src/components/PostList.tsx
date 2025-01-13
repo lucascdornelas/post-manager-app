@@ -8,6 +8,10 @@ type PostListProps = {
 const PostList = (props: PostListProps) => {
   const { posts } = props;
 
+  if (!posts || !posts.length) {
+    return <p>Nenhum post encontrado.</p>;
+  }
+
   return (
     <div className="space-y-4">
       {posts.map((post) => (

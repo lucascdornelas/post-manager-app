@@ -67,7 +67,7 @@ const PostForm = (props: PostFormProps) => {
           })}
         />
         {errors.title && (
-          <p className="text-red-500 text-xs mt-1">{errors.title.message}</p>
+          <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>
         )}
       </div>
 
@@ -88,7 +88,7 @@ const PostForm = (props: PostFormProps) => {
           })}
         />
         {errors.summary && (
-          <p className="text-red-500 text-xs mt-1">{errors.summary.message}</p>
+          <p className="text-red-500 text-sm mt-1">{errors.summary.message}</p>
         )}
       </div>
 
@@ -110,7 +110,7 @@ const PostForm = (props: PostFormProps) => {
           )}
         />
         {errors.body && (
-          <p className="text-red-500 text-xs mt-1">{errors.body.message}</p>
+          <p className="text-red-500 text-sm mt-1">{errors.body.message}</p>
         )}
       </div>
 
