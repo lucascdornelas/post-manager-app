@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import Home from "../pages/Home";
+import Home from "./Home";
 import { usePostStore } from "../store/postStore";
 import { useQuery } from "@tanstack/react-query";
 import { vi } from "vitest";

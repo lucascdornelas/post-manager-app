@@ -51,7 +51,7 @@ describe("NewPost Component", () => {
     mockMutate.mockClear();
   });
 
-  it("should create a new post and navigate to home", async () => {
+  it("should create a new post", async () => {
     vi.mocked(useMutation).mockReturnValue({
       mutate: mockMutate,
       isPending: false,
