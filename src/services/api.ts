@@ -5,7 +5,6 @@ const api = axios.create({
   baseURL: "https://6783a99b8b6c7a1316f52470.mockapi.io",
 });
 
-// @todo Implementar as funções getPosts, createPost, updatePost e deletePost.
 async function getPosts() {
   const response = await api.get("/posts");
   return response.data;
