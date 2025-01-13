@@ -6,6 +6,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { getPost, updatePost } from "../services/api";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
+import { queryClient } from "../main";
 
 export default function EditPost() {
   const { id } = useParams();
@@ -25,6 +26,10 @@ export default function EditPost() {
   const { data, isSuccess, isLoading } = useQuery({
     queryKey: ["posts", id],
     queryFn: () => getPost(id),
+    initialData: () => {
+      const allPosts = queryClient.getQueryData(["posts"]) as Post[];
+      return allPosts?.find((post) => post.id === id);
+    },
   });
 
   useEffect(() => {
@@ -60,7 +65,11 @@ export default function EditPost() {
 
   return (
     <div>
-      <PostForm onSubmit={handleSubmission} editingPost={editingPost} isPending={mutation.isPending} />
+      <PostForm
+        onSubmit={handleSubmission}
+        editingPost={editingPost}
+        isPending={mutation.isPending}
+      />
     </div>
   );
 }

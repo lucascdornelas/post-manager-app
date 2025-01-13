@@ -7,6 +7,8 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { getPost, deletePost } from "../services/api";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import { queryClient } from "../main";
+import { Post } from "../types";
 
 export default function PostPage() {
   const { id } = useParams();
@@ -19,6 +21,10 @@ export default function PostPage() {
   const { data, isSuccess, isLoading } = useQuery({
     queryKey: ["posts", id],
     queryFn: () => getPost(id),
+    initialData: () => {
+      const allPosts = queryClient.getQueryData(["posts"]) as Post[];
+      return allPosts?.find(post => post.id === id);
+    }
   });
 
   useEffect(() => {

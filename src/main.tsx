@@ -2,7 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-const queryClient = new QueryClient();
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
+export const queryClient = new QueryClient();
 
 import { App } from "./App";
 import "./styles/global.css";
@@ -14,6 +16,7 @@ if (rootElement) {
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
         <App />
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </React.StrictMode>
   );
