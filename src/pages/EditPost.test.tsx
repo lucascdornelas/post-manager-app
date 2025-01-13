@@ -15,7 +15,7 @@ vi.mock("@tanstack/react-query", () => ({
   QueryClient: vi.fn(),
 }));
 
-describe("PostPage Component", () => {
+describe("EditPost Component", () => {
   const mockSetPost = vi.fn();
   const mockDeletePostStore = vi.fn();
   const mockMutate = vi.fn();
