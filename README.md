@@ -2,7 +2,7 @@
 
 This project was developed as part of a technical challenge to evaluate frontend development skills. The goal is to create a functional and responsive web application using modern tools and best practices.
 
-The application is a post management system that allows users to list, create, edit, and delete posts. For this purpose, the public JSONPlaceholder API was used to perform CRUD (Create, Read, Update, Delete) operations.
+The application is a post management system that allows users to list, create, edit, and delete posts. For this purpose, the public [mockapi.io](https://mockapi.io/) API was used to perform CRUD (Create, Read, Update, Delete) operations.
 
 ## 🛠️ Technologies Used
 
